@@ -15,9 +15,8 @@ export const getAllProducts = async (
       items: products,
       total: products.length,
     });
-    return;
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
 
@@ -44,14 +43,15 @@ export const createProduct = async (
 
     const savedProduct = await product.save();
     res.status(201).json(savedProduct);
-    return;
   } catch (error: unknown) {
     if (error instanceof MongooseError.ValidationError) {
-      return next(new BadRequestError(error.message));
+      next(new BadRequestError(error.message));
+      return;
     }
     if (error instanceof Error && error.message.includes('E11000')) {
-      return next(new ConflictError('Товар с таким названием уже существует'));
+      next(new ConflictError('Товар с таким названием уже существует'));
+      return;
     }
-    return next(error);
+    next(error);
   }
 };
