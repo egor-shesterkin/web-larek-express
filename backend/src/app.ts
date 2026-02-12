@@ -6,7 +6,7 @@ import { errors } from 'celebrate';
 import productRoutes from './routes/productRoutes';
 import orderRoutes from './routes/orderRoutes';
 import { requestLogger, errorLogger } from './middlewares/logger';
-import { errorHandler } from './middlewares/errorHandler';
+import errorHandler from './middlewares/errorHandler';
 import NotFoundError from './errors/not-found-error';
 
 const app = express();
@@ -37,4 +37,4 @@ app.use(errors());
 
 app.use(errorHandler);
 
-app.listen(3000, () => {console.log('listening on port 3000');});
+app.listen(3000, () => { console.log('listening on port 3000'); });

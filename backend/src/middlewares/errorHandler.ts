@@ -4,14 +4,19 @@ interface CustomError extends Error {
   statusCode?: number;
 }
 
-export const errorHandler = (
+const errorHandler = (
   err: CustomError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ): void => {
   if (err && typeof (err as any).isJoi === 'function' && (err as any).isJoi()) {
     res.status(400).json(err);
+    return;
+  }
+
+  if (err instanceof SyntaxError || (err?.message?.includes('JSON') ?? false)) {
+    res.status(500).json({ message: err.message });
     return;
   }
 
@@ -25,3 +30,5 @@ export const errorHandler = (
     message: 'Внутренняя ошибка сервера',
   });
 };
+
+export default errorHandler;

@@ -21,20 +21,8 @@
   "rules": {
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "warn",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "ts": "never"
-      }
-    ],
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": ["_id"]
-      }
-    ],
+    "import/extensions": ["error", "ignorePackages", { "js": "never", "ts": "never" }],
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -44,6 +32,9 @@
         "varsIgnorePattern": "^_",
         "caughtErrorsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "linebreak-style": "off",
+    "no-console": "off",
+    "import/prefer-default-export": "off"
   }
 }
