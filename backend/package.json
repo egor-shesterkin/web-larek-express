@@ -26,7 +26,6 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@faker-js/faker": "^10.3.0",
     "celebrate": "^15.0.3",
     "express-winston": "^4.2.0",
     "winston": "^3.11.0",
