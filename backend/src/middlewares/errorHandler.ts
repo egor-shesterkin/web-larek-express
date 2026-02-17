@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { HttpStatus } from '../constants/http-status';
 
 interface CustomError extends Error {
   statusCode?: number;
@@ -11,12 +12,12 @@ const errorHandler = (
   _next: NextFunction,
 ): void => {
   if (err && typeof (err as any).isJoi === 'function' && (err as any).isJoi()) {
-    res.status(400).json(err);
+    res.status(HttpStatus.BadRequest).json(err);
     return;
   }
 
   if (err instanceof SyntaxError || (err?.message?.includes('JSON') ?? false)) {
-    res.status(500).json({ message: err.message });
+    res.status(HttpStatus.InternalServerError).json({ message: err.message });
     return;
   }
 
@@ -25,7 +26,7 @@ const errorHandler = (
     return;
   }
 
-  res.status(500).json({
+  res.status(HttpStatus.InternalServerError).json({
     message: 'Внутренняя ошибка сервера',
   });
 };

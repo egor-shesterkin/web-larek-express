@@ -3,6 +3,7 @@ import { Error as MongooseError } from 'mongoose';
 import Product from '../models/Product';
 import BadRequestError from '../errors/bad-request-error';
 import ConflictError from '../errors/conflict-error';
+import { HttpStatus } from '../constants/http-status';
 
 export const getAllProducts = async (
   _req: Request,
@@ -42,7 +43,7 @@ export const createProduct = async (
     });
 
     const savedProduct = await product.save();
-    res.status(201).json(savedProduct);
+    res.status(HttpStatus.Created).json(savedProduct);
   } catch (error: unknown) {
     if (error instanceof MongooseError.ValidationError) {
       next(new BadRequestError(error.message));

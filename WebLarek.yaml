@@ -1,0 +1,1670 @@
+openapi: 3.0.3
+info:
+  title: WebLarek
+  contact: {}
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+tags:
+- name: product
+  description: |-
+    Маршруты для работы с товарами
+
+    Маршруты отмеченные \* используются второй части проекта - **необязательной**
+- name: '*auth'
+  description: Маршруты связанные с пользователем
+- name: order
+  description: Маршрут для создания заказа
+- name: '*upload'
+paths:
+  /product/:
+    get:
+      tags:
+      - product
+      summary: Get product list
+      description: Get product list
+      operationId: getProductList
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "2723"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:22 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"aa3-y+wJfqV/fdEJPP9Np/+WEJUYAdk"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200"
+              examples:
+                Success:
+                  value:
+                    items:
+                    - _id: 66601a7857ecac94459696d0
+                      category: софт-скил
+                      description: "Если планируете решать задачи в тренажёре, берите два."
+                      image:
+                        fileName: /images/5_Dots.png
+                        originalName: 5_Dots.png
+                      price: 750
+                      title: +1 час в сутках
+                    - _id: 66601a8657ecac94459696d4
+                      category: другое
+                      description: "Лизните этот леденец, чтобы мгновенно запоминать и узнавать любой цветовой код CSS."
+                      image:
+                        fileName: /images/Shell.png
+                        originalName: Shell.png
+                      price: 1450
+                      title: HEX-леденец
+                    - _id: 66601a8c57ecac94459696d6
+                      category: софт-скил
+                      description: Будет стоять над душой и не давать прокрастинировать.
+                      image:
+                        fileName: /images/Asterisk_2.png
+                        originalName: Asterisk_2.png
+                      title: Мамка-таймер
+                    - _id: 66601a9757ecac94459696da
+                      category: дополнительное
+                      description: "Откройте эти куки, чтобы узнать, какой фреймворк вы должны изучить дальше."
+                      image:
+                        fileName: /images/Soft_Flower.png
+                        originalName: Soft_Flower.png
+                      price: 2500
+                      title: Фреймворк куки судьбы
+                    - _id: 66601a9d57ecac94459696dc
+                      category: кнопка
+                      description: "Если орёт кот, нажмите кнопку."
+                      image:
+                        fileName: /images/mute-cat.png
+                        originalName: mute-cat.png
+                      price: 2000
+                      title: Кнопка «Замьютить кота»
+                    - _id: 66601aa557ecac94459696de
+                      category: другое
+                      description: "Чтобы научиться правильно называть модификаторы, без этого не обойтись."
+                      image:
+                        fileName: /images/Pill.png
+                        originalName: Pill.png
+                      price: 1500
+                      title: БЭМ-пилюлька
+                    - _id: 66601aae57ecac94459696e0
+                      category: другое
+                      description: Измените локацию для поиска работы.
+                      image:
+                        fileName: /images/Polygon.png
+                        originalName: Polygon.png
+                      price: 100000
+                      title: Портативный телепорт
+                    - _id: 66601ab757ecac94459696e2
+                      category: другое
+                      description: "Даст время для изучения React, ООП и бэкенда"
+                      image:
+                        fileName: /images/Butterfly.png
+                        originalName: Butterfly.png
+                      price: 750
+                      title: Микровселенная в кармане
+                    - _id: 66601ac557ecac94459696e6
+                      category: хард-скил
+                      description: Очень полезный навык для фронтендера. Без шуток.
+                      image:
+                        fileName: /images/Leaf.png
+                        originalName: Leaf.png
+                      price: 10000
+                      title: UI/UX-карандаш
+                    - _id: 66601ac957ecac94459696e8
+                      category: другое
+                      description: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+                      image:
+                        fileName: /images/Mithosis.png
+                        originalName: Mithosis.png
+                      price: 1000
+                      title: Бэкенд-антистресс
+                    total: 10
+  /product:
+    post:
+      tags:
+      - product
+      summary: Create new product
+      description: Create new product
+      operationId: createNewProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/product_body"
+            examples:
+              Create new product:
+                value:
+                  category: дополнительное
+                  description: "Откройте эти куки, чтобы узнать, какой фреймворк вы должны изучить дальше."
+                  image: /images/Soft_Flower.svg
+                  price: 2500
+                  title: Фреймворк куки судьбы
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "262"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:58 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"106-tQhoH+yYIBbNE2UOGvU1poblMkY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_1"
+              examples:
+                Success:
+                  value:
+                    _id: 66601ac957ecac94459696e8
+                    category: другое
+                    description: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+                    image:
+                      fileName: /images/Mithosis.png
+                      originalName: Mithosis.png
+                    price: 1000
+                    title: Бэкенд-антистресс
+        "400":
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_400"
+              examples:
+                BadRequest:
+                  value:
+                    error: Bad Request
+                    message: Validation failed
+                    statusCode: 400
+                    validation:
+                      body:
+                        keys:
+                        - title
+                        message: '"title" is required'
+                        source: body
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_409"
+              examples:
+                Conflict:
+                  value:
+                    message: "E11000 duplicate key error collection: weblarek.products index: title_1 dup key: { title: \"Фреймворк куки судьбы\" }"
+  /product/6659c9d98ec8873e16cc23b4:
+    delete:
+      tags:
+      - product
+      summary: '*Delete product'
+      description: '*Delete product'
+      operationId: deleteProduct
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "262"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:58 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"106-tQhoH+yYIBbNE2UOGvU1poblMkY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_2"
+              examples:
+                Success:
+                  value:
+                    _id: 6659c9d98ec8873e16cc23b4
+                    category: другое
+                    description: "Чтобы научиться правильно называть модификаторы, без этого не обойтись."
+                    image: /images/44c00b1b_pill.png
+                    price: 1500
+                    title: БЭМ-пилюлька
+        "400":
+          description: BadRequest ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_400_1"
+              examples:
+                BadRequest ID:
+                  value:
+                    message: Передан не валидный ID товара
+        "401":
+          description: Unauthorized
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "20"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:46:49 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"14-s+qz4i6AO6tDYm6PsMCkX6W2fzY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_401"
+              examples:
+                Unauthorized:
+                  value:
+                    message: Необходима авторизация
+        "404":
+          description: NotFound
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "20"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:46:49 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"14-s+qz4i6AO6tDYm6PsMCkX6W2fzY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_404"
+              examples:
+                NotFound:
+                  value:
+                    message: Нет товара по заданному id
+      security:
+      - bearerAuth: []
+    patch:
+      tags:
+      - product
+      summary: '*Update product'
+      description: '*Update product'
+      operationId: updateProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/product_6659c9d98ec8873e16cc23b4_body"
+            examples:
+              '*Update product':
+                value:
+                  category: другое
+                  description: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+                  image:
+                    fileName: /images/Mithosis.png
+                    originalName: Mithosis.png
+                  price: 1000
+                  title: Бэкенд-антистресс
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/product_6659c9d98ec8873e16cc23b4_body_1"
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "262"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:58 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"106-tQhoH+yYIBbNE2UOGvU1poblMkY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_3"
+              examples:
+                Success:
+                  value:
+                    category: другое
+                    description: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+                    image:
+                      fileName: /images/Mithosis.png
+                      originalName: Mithosis.png
+                    price: 1000
+                    title: Бэкенд-антистресс
+        "400":
+          description: BadRequest Body / BadRequest ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_400_2"
+              examples:
+                BadRequest Body:
+                  value:
+                    error: Bad Request
+                    message: Validation failed
+                    statusCode: 400
+                    validation:
+                      body:
+                        keys:
+                        - title
+                        message: Минимальная длина поля "name" - 2
+                        source: body
+                BadRequest ID:
+                  value:
+                    message: Передан не валидный ID товара
+        "401":
+          description: Unauthorized
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "20"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:46:49 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"14-s+qz4i6AO6tDYm6PsMCkX6W2fzY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_401"
+              examples:
+                Unauthorized:
+                  value:
+                    message: Необходима авторизация
+        "404":
+          description: NotFound
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "20"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:46:49 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"14-s+qz4i6AO6tDYm6PsMCkX6W2fzY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_404"
+              examples:
+                NotFound:
+                  value:
+                    message: Нет товара по заданному id
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_409_1"
+              examples:
+                Conflict:
+                  value:
+                    message: Товар с таким заголовком уже существует
+      security:
+      - bearerAuth: []
+  /auth/login:
+    post:
+      tags:
+      - '*auth'
+      summary: Login
+      description: Login
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/auth_login_body"
+            examples:
+              Login:
+                value:
+                  email: admin@gmail.com
+                  password: "123456789"
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "2723"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:22 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"aa3-y+wJfqV/fdEJPP9Np/+WEJUYAdk"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_4"
+              examples:
+                Success:
+                  value:
+                    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU5YWI4MzNhMmM2MWU1NWRmZDE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcxNzE2MjgxMCwiZXhwIjoxNzE3MTY0MDEwfQ.VqvaHjMoliiTN5Vo4R8pqn_HKHo4dQ6jOPL6VTKHCbM
+                    success: true
+                    user:
+                      email: admin@gmail.com
+                      id: 6659ab833a2c61e55dfd160e
+                      name: Василий
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_401_1"
+              examples:
+                Unauthorized:
+                  value:
+                    message: Неправильные почта или пароль
+  /auth/logout:
+    get:
+      tags:
+      - '*auth'
+      summary: Logout
+      description: Logout
+      operationId: logout
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "2723"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:22 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"aa3-y+wJfqV/fdEJPP9Np/+WEJUYAdk"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_5"
+              examples:
+                Success:
+                  value:
+                    success: true
+      security:
+      - bearerAuth: []
+  /auth/token:
+    get:
+      tags:
+      - '*auth'
+      summary: Refresh token
+      description: Refresh token
+      operationId: refreshToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/auth_token_body"
+            examples:
+              Refresh token:
+                value:
+                  email: admin@gmail.com
+                  password: "123456789"
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "2723"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:22 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"aa3-y+wJfqV/fdEJPP9Np/+WEJUYAdk"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_4"
+              examples:
+                Success:
+                  value:
+                    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU5YWI4MzNhMmM2MWU1NWRmZDE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcxNzE2MjgxMCwiZXhwIjoxNzE3MTY0MDEwfQ.VqvaHjMoliiTN5Vo4R8pqn_HKHo4dQ6jOPL6VTKHCbM
+                    success: true
+                    user:
+                      email: admin@gmail.com
+                      id: 6659ab833a2c61e55dfd160e
+                      name: Василий
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_401_2"
+              examples:
+                Unauthorized:
+                  value:
+                    message: Не валидный токен
+      security:
+      - bearerAuth: []
+  /auth/register:
+    post:
+      tags:
+      - '*auth'
+      summary: Register
+      description: Register
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/auth_register_body"
+            examples:
+              Register:
+                value:
+                  email: admin@gmail.com
+                  name: Василий
+                  password: "123456789"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_4"
+              examples:
+                Success:
+                  value:
+                    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU5YWI4MzNhMmM2MWU1NWRmZDE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcxNzE2MjgxMCwiZXhwIjoxNzE3MTY0MDEwfQ.VqvaHjMoliiTN5Vo4R8pqn_HKHo4dQ6jOPL6VTKHCbM
+                    success: true
+                    user:
+                      email: admin@gmail.com
+                      id: 6659ab833a2c61e55dfd160e
+                      name: Василий
+        "400":
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_400_3"
+              examples:
+                BadRequest:
+                  value:
+                    message: "user validation failed: email: Поле \"email\" должно быть заполнено"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_409_2"
+              examples:
+                Conflict:
+                  value:
+                    message: Пользователь с таким email уже существует
+  /auth/user:
+    get:
+      tags:
+      - '*auth'
+      summary: Get current user
+      description: Get current user
+      operationId: getCurrentUser
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/auth_user_body"
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "2723"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:22 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"aa3-y+wJfqV/fdEJPP9Np/+WEJUYAdk"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_6"
+              examples:
+                Success:
+                  value:
+                    success: true
+                    user:
+                      email: admin@gmail.com
+                      id: 6659ab833a2c61e55dfd160e
+                      name: Василий
+        "401":
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: "{\r\n    \"message\": \"Необходима авторизация\" // \"Истек срок действия токена\"\r\n}"
+        "404":
+          description: Not Found
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "20"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:46:49 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"14-s+qz4i6AO6tDYm6PsMCkX6W2fzY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_404_1"
+              examples:
+                Not Found:
+                  value:
+                    message: Пользователь по заданному id отсутствует в базе
+      security:
+      - bearerAuth: []
+  /order:
+    post:
+      tags:
+      - order
+      summary: Order
+      description: Order
+      operationId: order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/order_body"
+            examples:
+              Order:
+                value:
+                  email: test@test.ru
+                  items:
+                  - 854cef69-976d-4c2a-a18c-2aa45046c390
+                  - c101ab44-ed99-4a54-990d-47aa2bb4e7d9
+                  payment: online
+                  phone: "+71234567890"
+                  total: 2200
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "58"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 20:04:16 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"3a-ukGUv0ohkG5SLpzugvC0khe3KJQ"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_7"
+              examples:
+                Success:
+                  value:
+                    id: 3acb72f1-10d5-4991-9362-449e238e3ab0
+                    total: 2200
+        "400":
+          description: Product not found / Wrong total / Wrong product buy / Wrong id product / BadRequest data
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "40"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 20:05:53 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"28-ZSb1dC6GSyDT0zlpvtUDOGWyTOw"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_400_4"
+              examples:
+                BadRequest data:
+                  value:
+                    error: Bad Request
+                    message: Validation failed
+                    statusCode: 400
+                    validation:
+                      body:
+                        keys:
+                        - address
+                        message: '"address" is required'
+                        source: body
+                Product not found:
+                  value:
+                    message: Товар с id 662e97d0c2fed29cab5bf3d2 не найден
+                Wrong id product:
+                  value:
+                    error: Неверная сумма заказа
+                Wrong product buy:
+                  value:
+                    message: Товар с id 662e97edc2fed29cab5bf3df не продается
+                Wrong total:
+                  value:
+                    message: Неверная сумма заказа
+  /upload:
+    post:
+      tags:
+      - '*upload'
+      summary: '*Upload file'
+      description: '*Upload file'
+      operationId: uploadFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/upload_body"
+      responses:
+        "200":
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "262"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:45:58 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"106-tQhoH+yYIBbNE2UOGvU1poblMkY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_8"
+              examples:
+                Success:
+                  value:
+                    fileName: /images/5_Dots.png
+                    originalName: 5_Dots.png
+        "401":
+          description: Unauthorized
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "20"
+            Date:
+              schema:
+                type: string
+                example: "Thu, 11 Jan 2024 19:46:49 GMT"
+            ETag:
+              schema:
+                type: string
+                example: W/"14-s+qz4i6AO6tDYm6PsMCkX6W2fzY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_401"
+              examples:
+                Unauthorized:
+                  value:
+                    message: Необходима авторизация
+      security:
+      - bearerAuth: []
+components:
+  schemas:
+    inline_response_400_4:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Неверная сумма заказа
+        message:
+          type: string
+          example: Товар с id 662e97d0c2fed29cab5bf3d2 не найден
+        statusCode:
+          type: number
+          example: 400
+        validation:
+          $ref: "#/components/schemas/inline_response_400_4_validation"
+    inline_response_401_2:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Не валидный токен
+    inline_response_400_3:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "user validation failed: email: Поле \"email\" должно быть заполнено"
+    product_body:
+      type: object
+      properties:
+        category:
+          type: string
+          example: дополнительное
+        description:
+          type: string
+          example: "Откройте эти куки, чтобы узнать, какой фреймворк вы должны изучить дальше."
+        image:
+          type: string
+          example: /images/Soft_Flower.svg
+        price:
+          type: number
+          example: 2500
+        title:
+          type: string
+          example: Фреймворк куки судьбы
+    inline_response_404_1:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Пользователь по заданному id отсутствует в базе
+    product6659c9d98ec8873e16cc23b4_image:
+      type: object
+      properties:
+        fileName:
+          type: string
+          example: /images/Mithosis.png
+        originalName:
+          type: string
+          example: Mithosis.png
+    inline_response_200_6_user:
+      type: object
+      properties:
+        email:
+          type: string
+          example: admin@gmail.com
+        id:
+          type: string
+          example: 6659ab833a2c61e55dfd160e
+        name:
+          type: string
+          example: Василий
+    inline_response_409_1:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Товар с таким заголовком уже существует
+    inline_response_409_2:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Пользователь с таким email уже существует
+    inline_response_400_2_validation:
+      type: object
+      properties:
+        body:
+          $ref: "#/components/schemas/inline_response_400_2_validation_body"
+    upload_body:
+      type: object
+      properties:
+        category:
+          type: string
+          example: другое
+        description:
+          type: string
+          example: "Чтобы научиться правильно называть модификаторы, без этого не обойтись."
+        price:
+          type: string
+          example: "1500"
+        title:
+          type: string
+          example: БЭМ-пилюлька
+    inline_response_400_4_validation_body:
+      type: object
+      properties:
+        keys:
+          type: array
+          example:
+          - address
+          items:
+            type: string
+            example: address
+        message:
+          type: string
+          example: '"address" is required'
+        source:
+          type: string
+          example: body
+    inline_response_200:
+      type: object
+      properties:
+        items:
+          type: array
+          example:
+          - _id: 66601a7857ecac94459696d0
+            category: софт-скил
+            description: "Если планируете решать задачи в тренажёре, берите два."
+            image:
+              fileName: /images/5_Dots.png
+              originalName: 5_Dots.png
+            price: 750
+            title: +1 час в сутках
+          - _id: 66601a8657ecac94459696d4
+            category: другое
+            description: "Лизните этот леденец, чтобы мгновенно запоминать и узнавать любой цветовой код CSS."
+            image:
+              fileName: /images/Shell.png
+              originalName: Shell.png
+            price: 1450
+            title: HEX-леденец
+          - _id: 66601a8c57ecac94459696d6
+            category: софт-скил
+            description: Будет стоять над душой и не давать прокрастинировать.
+            image:
+              fileName: /images/Asterisk_2.png
+              originalName: Asterisk_2.png
+            title: Мамка-таймер
+          - _id: 66601a9757ecac94459696da
+            category: дополнительное
+            description: "Откройте эти куки, чтобы узнать, какой фреймворк вы должны изучить дальше."
+            image:
+              fileName: /images/Soft_Flower.png
+              originalName: Soft_Flower.png
+            price: 2500
+            title: Фреймворк куки судьбы
+          - _id: 66601a9d57ecac94459696dc
+            category: кнопка
+            description: "Если орёт кот, нажмите кнопку."
+            image:
+              fileName: /images/mute-cat.png
+              originalName: mute-cat.png
+            price: 2000
+            title: Кнопка «Замьютить кота»
+          - _id: 66601aa557ecac94459696de
+            category: другое
+            description: "Чтобы научиться правильно называть модификаторы, без этого не обойтись."
+            image:
+              fileName: /images/Pill.png
+              originalName: Pill.png
+            price: 1500
+            title: БЭМ-пилюлька
+          - _id: 66601aae57ecac94459696e0
+            category: другое
+            description: Измените локацию для поиска работы.
+            image:
+              fileName: /images/Polygon.png
+              originalName: Polygon.png
+            price: 100000
+            title: Портативный телепорт
+          - _id: 66601ab757ecac94459696e2
+            category: другое
+            description: "Даст время для изучения React, ООП и бэкенда"
+            image:
+              fileName: /images/Butterfly.png
+              originalName: Butterfly.png
+            price: 750
+            title: Микровселенная в кармане
+          - _id: 66601ac557ecac94459696e6
+            category: хард-скил
+            description: Очень полезный навык для фронтендера. Без шуток.
+            image:
+              fileName: /images/Leaf.png
+              originalName: Leaf.png
+            price: 10000
+            title: UI/UX-карандаш
+          - _id: 66601ac957ecac94459696e8
+            category: другое
+            description: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+            image:
+              fileName: /images/Mithosis.png
+              originalName: Mithosis.png
+            price: 1000
+            title: Бэкенд-антистресс
+          items:
+            $ref: "#/components/schemas/inline_response_200_items"
+        total:
+          type: number
+          example: 10
+    auth_login_body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: admin@gmail.com
+        password:
+          type: string
+          example: "123456789"
+    inline_response_401:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Необходима авторизация
+    inline_response_400_2:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: Validation failed
+        statusCode:
+          type: number
+          example: 400
+        validation:
+          $ref: "#/components/schemas/inline_response_400_2_validation"
+    inline_response_401_1:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Неправильные почта или пароль
+    inline_response_400:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: Validation failed
+        statusCode:
+          type: number
+          example: 400
+        validation:
+          $ref: "#/components/schemas/inline_response_400_validation"
+    inline_response_400_1:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Передан не валидный ID товара
+    inline_response_404:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Нет товара по заданному id
+    inline_response_200_5:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+    inline_response_200_6:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        user:
+          $ref: "#/components/schemas/inline_response_200_6_user"
+    inline_response_409:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "E11000 duplicate key error collection: weblarek.products index: title_1 dup key: { title: \"Фреймворк куки судьбы\" }"
+    inline_response_200_7:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 3acb72f1-10d5-4991-9362-449e238e3ab0
+        total:
+          type: number
+          example: 2200
+    inline_response_200_8:
+      type: object
+      properties:
+        fileName:
+          type: string
+          example: /images/5_Dots.png
+        originalName:
+          type: string
+          example: 5_Dots.png
+    product_6659c9d98ec8873e16cc23b4_body_1:
+      type: object
+      properties:
+        category:
+          type: string
+          example: другое
+        description:
+          type: string
+          example: "Чтобы научиться правильно называть модификаторы, без этого не обойтись."
+        price:
+          type: string
+          example: "1500"
+        title:
+          type: string
+          example: БЭМ-пилюлька
+    inline_response_400_2_validation_body:
+      type: object
+      properties:
+        keys:
+          type: array
+          example:
+          - title
+          items:
+            type: string
+            example: title
+        message:
+          type: string
+          example: Минимальная длина поля "name" - 2
+        source:
+          type: string
+          example: body
+    inline_response_400_validation_body:
+      type: object
+      properties:
+        keys:
+          type: array
+          example:
+          - title
+          items:
+            type: string
+            example: title
+        message:
+          type: string
+          example: '"title" is required'
+        source:
+          type: string
+          example: body
+    inline_response_200_items:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 66601a7857ecac94459696d0
+        category:
+          type: string
+          example: софт-скил
+        description:
+          type: string
+          example: "Если планируете решать задачи в тренажёре, берите два."
+        image:
+          $ref: "#/components/schemas/inline_response_200_8"
+        price:
+          type: number
+          nullable: true
+          example: 750
+        title:
+          type: string
+          example: +1 час в сутках
+    auth_token_body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: admin@gmail.com
+        password:
+          type: string
+          example: "123456789"
+    auth_register_body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: admin@gmail.com
+        name:
+          type: string
+          example: Василий
+        password:
+          type: string
+          example: "123456789"
+    auth_user_body:
+      type: object
+      properties:
+        category:
+          type: string
+          example: другое
+        description:
+          type: string
+          example: "Чтобы научиться правильно называть модификаторы, без этого не обойтись."
+        price:
+          type: string
+          example: "1500"
+        title:
+          type: string
+          example: БЭМ-пилюлька
+    inline_response_200_1:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 66601ac957ecac94459696e8
+        category:
+          type: string
+          example: другое
+        description:
+          type: string
+          example: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+        image:
+          $ref: "#/components/schemas/product6659c9d98ec8873e16cc23b4_image"
+        price:
+          type: number
+          example: 1000
+        title:
+          type: string
+          example: Бэкенд-антистресс
+    inline_response_200_2:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 6659c9d98ec8873e16cc23b4
+        category:
+          type: string
+          example: другое
+        description:
+          type: string
+          example: "Чтобы научиться правильно называть модификаторы, без этого не обойтись."
+        image:
+          type: string
+          example: /images/44c00b1b_pill.png
+        price:
+          type: number
+          example: 1500
+        title:
+          type: string
+          example: БЭМ-пилюлька
+    inline_response_200_3:
+      type: object
+      properties:
+        category:
+          type: string
+          example: другое
+        description:
+          type: string
+          example: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+        image:
+          $ref: "#/components/schemas/product6659c9d98ec8873e16cc23b4_image"
+        price:
+          type: number
+          example: 1000
+        title:
+          type: string
+          example: Бэкенд-антистресс
+    inline_response_200_4:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU5YWI4MzNhMmM2MWU1NWRmZDE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTcxNzE2MjgxMCwiZXhwIjoxNzE3MTY0MDEwfQ.VqvaHjMoliiTN5Vo4R8pqn_HKHo4dQ6jOPL6VTKHCbM
+        success:
+          type: boolean
+          example: true
+        user:
+          $ref: "#/components/schemas/inline_response_200_6_user"
+    inline_response_400_4_validation:
+      type: object
+      properties:
+        body:
+          $ref: "#/components/schemas/inline_response_400_4_validation_body"
+    inline_response_400_validation:
+      type: object
+      properties:
+        body:
+          $ref: "#/components/schemas/inline_response_400_validation_body"
+    product_6659c9d98ec8873e16cc23b4_body:
+      type: object
+      properties:
+        category:
+          type: string
+          example: другое
+        description:
+          type: string
+          example: "Сжимайте мячик, чтобы снизить стресс от тем по бэкенду."
+        image:
+          $ref: "#/components/schemas/product6659c9d98ec8873e16cc23b4_image"
+        price:
+          type: number
+          example: 1000
+        title:
+          type: string
+          example: Бэкенд-антистресс
+    order_body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: test@test.ru
+        items:
+          type: array
+          example:
+          - 854cef69-976d-4c2a-a18c-2aa45046c390
+          - c101ab44-ed99-4a54-990d-47aa2bb4e7d9
+          items:
+            type: string
+            example: 854cef69-976d-4c2a-a18c-2aa45046c390
+        payment:
+          type: string
+          example: online
+        phone:
+          type: string
+          example: "+71234567890"
+        total:
+          type: number
+          example: 2200
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
